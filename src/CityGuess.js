@@ -5,6 +5,7 @@ import { cities } from "./globals.js";
 import Avatar from "@material-ui/core/Avatar";
 
 import "./App.css";
+import NextButton from './nextButton'
 
 // ES Modules syntax
 import Unsplash from "unsplash-js";
@@ -17,8 +18,15 @@ const unsplash = new Unsplash({
 
 export default class CityGuess extends React.Component {
   state = {
-    cityObj: {}
+    cityObj: {},
+    userAnswer: "",
+    selected: -1,
   };
+
+
+  _userSelect = (index) => {
+    this.setState({selected: index})
+  }
 
   randomizeGuess = cityIndex => {
     let tempCities = cities;
@@ -31,22 +39,7 @@ export default class CityGuess extends React.Component {
       tempCities.splice(index, 1);
     }
 
-    result.sort(() => 0.5 - Math.random());
-
-    return result.map(x => (
-      <li
-        style={{
-          listStyleType: "none",
-          padding: 0,
-          marginBottom: "2vh",
-          fontSize: "1.25em",
-          fontFamily: "Nunito Sans",
-          textAlign: "center"
-        }}
-      >
-        {x}
-      </li>
-    ));
+    return result.sort(() => 0.5 - Math.random());
   };
 
   getRandomCity = function() {
@@ -88,22 +81,61 @@ export default class CityGuess extends React.Component {
 
   componentDidMount() {
     this.getRandomCity().then(result => {
-      console.log(result.guesses, result);
       this.setState({ cityObj: result });
     });
   }
 
   render() {
+    if (this.state.cityObj.guesses) {
+        var guessList =  this.state.cityObj.guesses.map((x,i) => (
+            <li onClick={() => {this._userSelect(i)}} key={i} className={(this.state.selected === i) ? css(styles.selectedListStyle) : css(styles.listStyle)}>
+              {x}
+            </li>
+        ))
+    }
+
+
+        var answer = () => {
+          if (this.state.selected > -1) {
+            return (
+              <div>
+                <div className={css(styles.questionTextStyle)}>
+                  Correct!
+                </div>
+                <div
+                  style={{
+                    textAlign: "center",
+                    fontFamily: "Nunito Sans"
+                  }}
+                >
+                  User {this.state.cityObj.userName} took this picture
+                  in {this.state.cityObj.title}
+                </div>
+                <NextButton />
+              </div>
+            );
+          } else {
+              return <div></div>
+          }
+        };
+
     return (
       <div className={css(styles.mainWrapper)}>
         <div className={css(styles.leftWrapper)}>
           <div className={css(styles.questionWrapper)}>
             <div className={css(styles.questionTextStyle)}>
-              Where this picture was taken?
+              Where was this picture taken?
             </div>
             <ul style={{ listStyleType: "none", padding: 0 }}>
-              {this.state.cityObj.guesses}
+            {
+                guessList   
+            }
             </ul>
+          </div>
+          <div className={css(styles.answerWrapper)}>
+           {
+               answer()
+           }
           </div>
         </div>
         <div className={css(styles.rightWrapper)}>
@@ -143,6 +175,7 @@ const styles = StyleSheet.create({
     minWidth: "100vw",
     minHeight: "100vh",
     flexDirection: "row",
+    flexWrap: "wrap",
   },
   leftWrapper: {
     display: "flex",
@@ -163,7 +196,27 @@ const styles = StyleSheet.create({
     display: "flex",
     flex: 1,
   },
-
+  listStyle: {
+        listStyleType: "none",
+        padding: 0,
+        marginBottom: "2vh",
+        fontSize: "1.25em",
+        fontFamily: "Nunito Sans",
+        textAlign: "center",
+        ':hover': {
+          fontSize: "1.75em",
+          fontWeight: "bold",
+        },
+  },
+  selectedListStyle: {
+    listStyleType: "none",
+    padding: 0,
+    marginBottom: "2vh",
+    fontSize: "1.75em",
+    fontFamily: "Nunito Sans",
+    textAlign: "center",
+    fontWeight: "bold",
+},
   rightImageRow: {
     display: "flex",
     flex: 9,
@@ -187,6 +240,12 @@ const styles = StyleSheet.create({
     fontFamily: "Nunito Sans",
     fontSize: "1.35em"
   },
+  titleTextStyle: {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontFamily: "Merriweather",
+    fontSize: "1.75em"
+  },
 
   questionWrapper: {
     display: "flex",
@@ -197,12 +256,19 @@ const styles = StyleSheet.create({
     marginLeft: "2.5vw"
   },
 
+  answerWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "5vh",
+    marginRight: "2.5vw",
+    marginLeft: "2.5vw"
+  },
+
   rightWrapper: {
     display: "flex",
     flexDirection: "column",
     flex: 7,
     maxWidth: "70vw",
-    maxHeight: "100vh",
   },
   imageStyle: {
     display: "flex",
