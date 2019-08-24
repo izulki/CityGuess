@@ -4,10 +4,11 @@ import "./App.css";
 
 export default class NextButton extends React.Component {
 
+
     render() {
         return (
             <div className={css(style.buttonWrapper)}>
-                <div className={css(style.buttonTextStyle)}>NEXT CITY</div>
+                <div onClick={this.props.press} className={css(style.buttonTextStyle)}>NEXT CITY</div>
             </div>
         )
     }
@@ -19,7 +20,6 @@ const style = StyleSheet.create({
         display:'flex',
         flex: 1,
         width: '100%',
-        height: '2vw',
         borderWidth: 1,
         borderStyle: "solid",
         borderColor: "black",
@@ -35,6 +35,8 @@ const style = StyleSheet.create({
         }
     },
     buttonTextStyle: {
+        marginTop: "1.5vw",
+        marginBottom: "1.5vw",
         fontFamily: 'Nunito Sans',
         fontWeight: 'bold',
     }
