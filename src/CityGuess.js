@@ -6,6 +6,7 @@ import Avatar from "@material-ui/core/Avatar";
 
 import "./App.css";
 import NextButton from "./nextButton";
+import Likes from './likes.js'
 
 // ES Modules syntax
 import Unsplash from "unsplash-js";
@@ -192,6 +193,10 @@ export default class CityGuess extends React.Component {
                 </div>
               </div>
             </div>
+            <div className={css(styles.userWrapper)}>
+                <Likes number={this.state.cityObj.likes}/>
+            </div>
+            
           </div>
           <div className={css(styles.rightImageRow)}>
             <img
@@ -229,10 +234,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginTop: "2.5vh",
     marginRight: "2.5vw",
-    marginBottom: "2.5vh"
+    marginBottom: "2.5vh",
   },
   rightUserRow: {
     display: "flex",
+    justifyContent: "space-between",
+    maxWidth: "65vw",
     flex: 1
   },
   listStyle: {
@@ -259,7 +266,8 @@ const styles = StyleSheet.create({
   rightImageRow: {
     display: "flex",
     flex: 9,
-    marginRight: "5vw"
+    marginRight: "5vw",
+    justifyContent: "center"
   },
 
   userNameAndSocialWrapper: {
