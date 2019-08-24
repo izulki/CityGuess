@@ -8,6 +8,7 @@ import CountUp from "react-countup";
 export default class Likes extends React.Component {
   state = { number: 0 };
 
+  //Update number when number prop arrive
   componentDidUpdate(prevProps) {
     if (this.props.number !== prevProps.number) {
       this.setState({ number: this.props.number });
@@ -25,8 +26,7 @@ export default class Likes extends React.Component {
           duration={2.75}
         />
         <div>
-          {" "}
-          <LikeIcon />{" "}
+          <LikeIcon />
         </div>
       </div>
     );

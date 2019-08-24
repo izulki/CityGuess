@@ -1,20 +1,10 @@
 import React from "react";
-import { StyleSheet, css } from "aphrodite";
 import Avatar from "@material-ui/core/Avatar";
-
-import "./App.css";
-
-import { cities } from "./globals.js";
+import { unsplash, cities } from "./globals.js";
 import NextButton from "./nextButton.js";
 import Likes from "./likes.js";
+import "./App.css";
 
-// ES Modules syntax
-import Unsplash from "unsplash-js";
-const unsplash = new Unsplash({
-  applicationId:
-    "788b5f9b52c7e5b5ce51de9108719f0b4be68d7ba2f74dc3fbd270e2df7f9a56",
-  secret: "9e1f6bfa18fd3c1e5b2b9d28c9ffcd0e0d79672dd69454af7713f894254d81a8"
-});
 
 export default class CityGuess extends React.Component {
   state = {
@@ -148,8 +138,8 @@ export default class CityGuess extends React.Component {
           className={
             //Assign selected style if selected index matches list index
             this.state.selected === i
-              ? css(styles.selectedListStyle)
-              : css(styles.listStyle)
+              ? "selectedListStyle"
+              : "listStyle"
           }
         >
           {x} 
@@ -166,7 +156,7 @@ export default class CityGuess extends React.Component {
         if (this.state.userAnswer === this.state.cityObj.correctGuess) {
           return (
             <div>
-              <div className={css(styles.questionTextStyle)}>Correct!</div>
+              <div className="questionTextStyle">Correct!</div>
               {next()} 
             </div>
           );
@@ -175,8 +165,8 @@ export default class CityGuess extends React.Component {
         } else {
           return (
             <div>
-              <div className={css(styles.questionTextStyle)}>Incorrect!</div>
-              <div className={css(styles.bodyTextStyle)}>
+              <div className="questionTextStyle">Incorrect!</div>
+              <div className="bodyTextStyle">
                 Answer: {this.state.cityObj.correctGuess}
               </div>
               {next()}
@@ -192,7 +182,7 @@ export default class CityGuess extends React.Component {
     var next = () => {
         return(
             <div style={{marginTop: "1vw"}}>
-            <div className={css(styles.bodyTextStyle)}>
+            <div className="bodyTextStyle">
                 {this.state.cityObj.userName} took this picture in{" "}
                 {this.state.cityObj.title}
               </div>
@@ -206,24 +196,24 @@ export default class CityGuess extends React.Component {
     }
 
     return (
-      <div className={css(styles.mainWrapper)}>
-        <div className={css(styles.leftWrapper)}>
-          <div className={css(styles.questionWrapper)}>
-            <div className={css(styles.questionTextStyle)}>
+      <div className="mainWrapper">
+        <div className="leftWrapper">
+          <div className="questionWrapper">
+            <div className="questionTextStyle">
               Where was this picture taken?
             </div>
             <ul style={{ listStyleType: "none", padding: 0 }}>{guessList}</ul>
           </div>
-          <div className={css(styles.answerWrapper)}>{answer()}</div>
+          <div className="answerWrapper">{answer()}</div>
         </div>
-        <div className={css(styles.rightWrapper)}>
-          <div className={css(styles.rightUserRow)}>
-            <div className={css(styles.userWrapper)}>
+        <div className="rightWrapper">
+          <div className="rightUserRow">
+            <div className="userWrapper">
               <div>
                 <Avatar src={this.state.cityObj.userAvatar} />
               </div>
-              <div className={css(styles.userNameAndSocialWrapper)}>
-                <div className={css(styles.userNameTextStyle)}>
+              <div className="userNameAndSocialWrapper">
+                <div className="userNameTextStyle">
                   <a
                     className="userName"
                     href={`https://unsplash.com/@${
@@ -234,7 +224,7 @@ export default class CityGuess extends React.Component {
                     {this.state.cityObj.userName}{" "}
                   </a>
                 </div>
-                <div className={css(styles.userSocialTextStyle)}>
+                <div className="userSocialTextStyle">
                   <a
                     className="userName"
                     href={`https://unsplash.com/@${
@@ -247,13 +237,13 @@ export default class CityGuess extends React.Component {
                 </div>
               </div>
             </div>
-            <div className={css(styles.userWrapper)}>
+            <div className="userWrapper">
               <Likes number={this.state.cityObj.likes} />
             </div>
           </div>
-          <div className={css(styles.rightImageRow)}>
+          <div className="rightImageRow">
             <img
-              className={css(styles.imageStyle)}
+              className="imageStyle"
               src={this.state.cityObj.url}
               alt=""
             />
@@ -263,121 +253,3 @@ export default class CityGuess extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  mainWrapper: {
-    display: "flex",
-    maxWidth: "100vw",
-    maxHeight: "100vh",
-    minWidth: "100vw",
-    minHeight: "100vh",
-    flexDirection: "row",
-    flexWrap: "wrap"
-  },
-  bodyTextStyle: {
-    textAlign: "center",
-    fontFamily: "Nunito Sans"
-  },
-  leftWrapper: {
-    display: "flex",
-    flexDirection: "column",
-    flex: 3,
-    maxWidth: "30vw",
-    maxHeight: "100vh",
-    minHeight: "100vh"
-  },
-  userWrapper: {
-    display: "flex",
-    flexDirection: "row",
-    marginTop: "2.5vh",
-    marginRight: "2.5vw",
-    marginBottom: "2.5vh"
-  },
-  rightUserRow: {
-    display: "flex",
-    justifyContent: "space-between",
-    maxWidth: "65vw",
-    flex: 1
-  },
-  listStyle: {
-    listStyleType: "none",
-    padding: 0,
-    marginBottom: "2vh",
-    fontSize: "1.25em",
-    fontFamily: "Nunito Sans",
-    textAlign: "center",
-    ":hover": {
-      fontSize: "1.75em",
-      fontWeight: "bold"
-    }
-  },
-  selectedListStyle: {
-    listStyleType: "none",
-    padding: 0,
-    marginBottom: "2vh",
-    fontSize: "1.75em",
-    fontFamily: "Nunito Sans",
-    textAlign: "center",
-    fontWeight: "bold"
-  },
-  rightImageRow: {
-    display: "flex",
-    flex: 9,
-    marginRight: "5vw",
-    justifyContent: "center"
-  },
-
-  userNameAndSocialWrapper: {
-    marginLeft: "1vw"
-  },
-  userNameTextStyle: {
-    fontFamily: "Nunito Sans",
-    fontWeight: "bold"
-  },
-  userSocialTextStyle: {
-    fontFamily: "Nunito Sans",
-    fontSize: "0.8em"
-  },
-  questionTextStyle: {
-    textAlign: "center",
-    fontWeight: "bold",
-    fontFamily: "Nunito Sans",
-    fontSize: "1.35em"
-  },
-  titleTextStyle: {
-    textAlign: "center",
-    fontWeight: "bold",
-    fontFamily: "Merriweather",
-    fontSize: "1.75em"
-  },
-
-  questionWrapper: {
-    display: "flex",
-    flexDirection: "column",
-    marginTop: "2.5vh",
-    marginRight: "2.5vw",
-    marginBottom: "2.5vh",
-    marginLeft: "2.5vw"
-  },
-
-  answerWrapper: {
-    display: "flex",
-    flexDirection: "column",
-    marginTop: "5vh",
-    marginRight: "2.5vw",
-    marginLeft: "2.5vw"
-  },
-
-  rightWrapper: {
-    display: "flex",
-    flexDirection: "column",
-    flex: 7,
-    maxWidth: "70vw"
-  },
-  imageStyle: {
-    display: "flex",
-    maxWidth: "65vw",
-    maxHeight: "85vh",
-    boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)"
-  }
-});

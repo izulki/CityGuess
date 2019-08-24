@@ -1,42 +1,126 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:400,700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Merriweather:700&display=swap');
 
-.App {
+.mainWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/******* LEFT SIDE *******/
+.leftWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 30%;
+  max-width: 30vw;
+  min-width: 30vw;
+
+}
+
+.questionWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.5vh;
+  margin-right: 2.5vw;
+  margin-bottom: 2.5vh;
+  margin-left: 2.5vw;
+}
+
+.answerWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5vh;
+  margin-right: 2.5vw;
+  margin-left: 2.5vw;
+}
+
+/******* RIGHT SIDE *******/
+.rightWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 70%;
+  max-width: 70vw;
+}
+
+.rightUserRow {
+  display: flex;
+  justify-content: space-between;
+  max-width: 65vw;
+}
+
+.userWrapper {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2.5vh;
+  margin-right: 2.5vw;
+  margin-bottom: 2.5vh;
+}
+
+.userNameAndSocialWrapper {
+  margin-left: 1vw;
+}
+
+.userNameTextStyle {
+  font-family: "Nunito Sans";
+  font-weight: bold;
+}
+
+.userSocialTextStyle {
+  font-family: "Nunito Sans";
+  font-size: 0.8em;
+}
+
+.rightImageRow {
+  display: flex;
+  justify-content: center;
+  margin-right: 5vw;
+}
+
+.imageStyle {
+  position: relative;
+  display: flex;
+  max-width: 65vw;
+  max-height: 85vh;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.selectedListStyle {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 2vh;
+  font-size: 1.75em;
+  font-family: "Nunito Sans";
+  text-align: center;
+  font-weight: bold;
+}
+
+.listStyle {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 2vh;
+  font-size: 1.25em;
+  font-family: "Nunito Sans";
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.listStyle:hover {
+    font-size: 1.75em;
+    font-weight: bold;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+/******* TEXT STYLING *******/
+.questionTextStyle {
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Nunito Sans';
+  font-size: 1.35em;
 }
 
-.App-link {
-  color: #61dafb;
+.bodyTextStyle {
+  text-align: center;
+  font-family: "Nunito Sans";
 }
-
-.mainWrapper {
-  display: flex;
-  max-width: 100vw;
-  max-height: 100vw;
-  min-width: 100vw;
-  min-height: 100vw;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-}
-
 
 
 a.userName {
@@ -44,11 +128,61 @@ a.userName {
   color: black
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/*Mobile Styling*/
+@media only screen and (max-width: 700px) {
+  .mainWrapper {
+    display: block;
+    justify-content: center;
+        width: 100%;
   }
-  to {
-    transform: rotate(360deg);
+  .leftWrapper {
+    display: block;
+    min-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .questionWrapper {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .answerWrapper {
+    display: block;
+    flex-direction: column;
+    margin-top: 5vh;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .rightWrapper {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .rightUserRow {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .userWrapper {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .rightImageRow {
+    display: block;
+  }
+
+  .imageStyle {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+    max-height: 90vw;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   }
 }
