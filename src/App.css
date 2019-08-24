@@ -26,6 +26,19 @@
   color: #61dafb;
 }
 
+.mainWrapper {
+  display: flex;
+  max-width: 100vw;
+  max-height: 100vw;
+  min-width: 100vw;
+  min-height: 100vw;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+
+
+
 a.userName {
   text-decoration: none;
   color: black
