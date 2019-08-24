@@ -26,6 +26,11 @@
   color: #61dafb;
 }
 
+a.userName {
+  text-decoration: none;
+  color: black
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

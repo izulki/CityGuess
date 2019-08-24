@@ -129,8 +129,7 @@ export default class CityGuess extends React.Component {
                   fontFamily: "Nunito Sans"
                 }}
               >
-                User {this.state.cityObj.userName} took this picture in{" "}
-                {this.state.cityObj.title}
+                {this.state.cityObj.userName} took this picture in {this.state.cityObj.title}
               </div>
                <NextButton press={()=>{this.getNextCity(this.bind)}} />
            
@@ -155,8 +154,7 @@ export default class CityGuess extends React.Component {
                   marginTop: "1vw"
                 }}
               >
-                User {this.state.cityObj.userName} took this picture in{" "}
-                {this.state.cityObj.title}
+                {this.state.cityObj.userName} took this picture in {this.state.cityObj.title}
               </div>
               <NextButton press={()=>{this.getNextCity(this.bind)}} />
             </div>
@@ -186,10 +184,10 @@ export default class CityGuess extends React.Component {
               </div>
               <div className={css(styles.userNameAndSocialWrapper)}>
                 <div className={css(styles.userNameTextStyle)}>
-                  {this.state.cityObj.userName}
+                  <a className="userName" href={`https://unsplash.com/@${this.state.cityObj.userSocial}`}>  {this.state.cityObj.userName} </a> 
                 </div>
                 <div className={css(styles.userSocialTextStyle)}>
-                  @{this.state.cityObj.userSocial}
+                <a className="userName" href={`https://unsplash.com/@${this.state.cityObj.userSocial}`}>   @{this.state.cityObj.userSocial} </a> 
                 </div>
               </div>
             </div>
