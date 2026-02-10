@@ -10,7 +10,7 @@
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1",
     "react-svg": "^10.0.18",
-    "unsplash-js": "^5.0.0"
+    "unsplash-js": "^7.0.20"
   },
   "scripts": {
     "start": "react-scripts start",
